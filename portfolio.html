@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sherende Amogelang — Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg:       #0a0f1e;
+    --bg2:      #0f1629;
+    --bg3:      #141e35;
+    --accent:   #4F8EF7;
+    --accent2:  #7B5CF0;
+    --green:    #34D399;
+    --text:     #E2E8F0;
+    --muted:    #64748B;
+    --border:   #1e2d4a;
+    --card:     #111827;
+    --grad: linear-gradient(135deg, #4F8EF7, #7B5CF0);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 48px;
+    line-height: 1.2;
+  }
+
+  .section-title span {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 64px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    position: relative;
+  }
+
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--green);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  .hero-name {
+    font-size: clamp(42px, 7vw, 80px);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  .hero-name .gradient {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    color: #94A3B8;
+    max-width: 520px;
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    padding: 14px 28px;
+    background: var(--grad);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+  .btn-outline {
+    padding: 14px 28px;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover { background: rgba(79,142,247,0.1); transform: translateY(-2px); }
+
+  /* floating dots bg */
+  .hero-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.06;
+    animation: float linear infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.06; }
+    90% { opacity: 0.06; }
+    100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+  }
+
+  #hero > * { position: relative; z-index: 1; }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: #94A3B8;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 16px;
+  }
+
+  .about-text p strong { color: var(--text); }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .stat-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+  .stat-num {
+    font-size: 32px;
+    font-weight: 700;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg2); padding-top: 100px; padding-bottom: 100px; max-width: 100%; }
+  #skills > .inner { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .skill-cat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .skill-cat:hover { border-color: var(--accent2); transform: translateY(-3px); }
+
+  .skill-cat-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .skill-cat-title::before {
+    content: '';
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--grad);
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .skill-tag {
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.2);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .skill-tag.green {
+    background: rgba(52,211,153,0.1);
+    border-color: rgba(52,211,153,0.2);
+    color: var(--green);
+  }
+
+  .skill-tag.purple {
+    background: rgba(123,92,240,0.1);
+    border-color: rgba(123,92,240,0.2);
+    color: #A78BFA;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--grad);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.2);
+  }
+
+  .project-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .project-sub {
+    font-size: 12px;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: -8px;
+  }
+
+  .project-desc {
+    font-size: 13.5px;
+    color: #94A3B8;
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .project-tag {
+    background: rgba(123,92,240,0.1);
+    border: 1px solid rgba(123,92,240,0.15);
+    color: #A78BFA;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 4px;
+    transition: gap 0.2s;
+  }
+
+  .project-link:hover { gap: 10px; }
+
+  /* ── EDUCATION ── */
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: start;
+    transition: border-color 0.2s;
+    margin-bottom: 24px;
+  }
+
+  .edu-card:hover { border-color: var(--accent); }
+
+  .edu-icon {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    background: var(--grad);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .edu-degree {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .edu-institution {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .edu-modules {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .edu-module {
+    background: rgba(52,211,153,0.08);
+    border: 1px solid rgba(52,211,153,0.15);
+    color: var(--green);
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--bg2); max-width: 100%; padding: 100px 0; }
+  #contact > .inner { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .contact-text p {
+    font-size: 15px;
+    color: #94A3B8;
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 16px; }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .contact-link:hover { border-color: var(--accent); transform: translateX(4px); }
+
+  .contact-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: rgba(79,142,247,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .contact-form {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px;
+  }
+
+  .form-group { margin-bottom: 20px; }
+
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--accent); }
+
+  .form-group textarea { min-height: 120px; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  footer span {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 60px; height: 3px;
+    background: var(--grad);
+    border-radius: 2px;
+    margin-bottom: 48px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 80px 20px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero-name { font-size: 38px; }
+    #skills > .inner, #contact > .inner { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating background dots -->
+<div class="hero-bg" id="bgDots"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SA.dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:Amogelangsherende@gmail.com" class="btn-primary" style="font-size:13px; padding:10px 20px;">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tag">Available for opportunities</div>
+  <h1 class="hero-name">
+    Sherende<br>
+    <span class="gradient">Amogelang</span>
+  </h1>
+  <p class="hero-sub">IT Student · Network Engineer · Developer</p>
+  <p class="hero-desc">
+    Final-year BSc Information Technology student at North-West University with a passion for building 
+    secure, scalable networks and cross-platform applications. I turn complex problems into clean solutions.
+  </p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-primary">View My Work</a>
+    <a href="#contact" class="btn-outline">Get In Touch</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">// 01. about</div>
+  <h2 class="section-title">About <span>Me</span></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a final-year <strong>BSc Information Technology</strong> student at North-West University, 
+        Pretoria. My work spans two worlds — building enterprise-grade networks with Cisco technologies 
+        and developing cross-platform software applications in C# and .NET.
+      </p>
+      <p>
+        What I enjoy most is the problem-solving side of IT. Whether it's diagnosing why a DHCP relay 
+        isn't forwarding requests across VLANs or figuring out why NAT translations aren't firing — 
+        I work through it methodically until it's resolved.
+      </p>
+      <p>
+        I'm actively looking for <strong>junior roles</strong> in network engineering, software development 
+        or IT infrastructure where I can apply what I've learned and keep growing.
+      </p>
+      <br>
+      <a href="mailto:Amogelangsherende@gmail.com" class="btn-primary">Download CV</a>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Projects Completed</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">8</span>
+        <span class="stat-label">VLANs Designed</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">6+</span>
+        <span class="stat-label">Languages Known</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">NWU</span>
+        <span class="stat-label">Final Year Student</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="inner">
+    <div class="section-label">// 02. skills</div>
+    <h2 class="section-title">Technical <span>Skills</span></h2>
+    <div class="divider"></div>
+    <div class="skills-grid">
+
+      <div class="skill-cat">
+        <div class="skill-cat-title">Networking</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Cisco IOS</span>
+          <span class="skill-tag">VLANs</span>
+          <span class="skill-tag">802.1Q Trunking</span>
+          <span class="skill-tag">NAT / PAT</span>
+          <span class="skill-tag">DHCP</span>
+          <span class="skill-tag">DNS</span>
+          <span class="skill-tag">STP / PVST</span>
+          <span class="skill-tag">Static Routing</span>
+          <span class="skill-tag">ACLs</span>
+          <span class="skill-tag">Packet Tracer</span>
+        </div>
+      </div>
+
+      <div class="skill-cat">
+        <div class="skill-cat-title">Programming Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag green">C#</span>
+          <span class="skill-tag green">Java</span>
+          <span class="skill-tag green">Python</span>
+          <span class="skill-tag green">C++</span>
+          <span class="skill-tag green">JavaScript</span>
+          <span class="skill-tag green">R</span>
+        </div>
+      </div>
+
+      <div class="skill-cat">
+        <div class="skill-cat-title">Frameworks &amp; Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag purple">.NET MAUI</span>
+          <span class="skill-tag purple">Visual Studio</span>
+          <span class="skill-tag purple">Git</span>
+          <span class="skill-tag purple">MySQL</span>
+          <span class="skill-tag purple">MongoDB</span>
+        </div>
+      </div>
+
+      <div class="skill-cat">
+        <div class="skill-cat-title">Areas of Knowledge</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Network Security</span>
+          <span class="skill-tag">Systems Analysis</span>
+          <span class="skill-tag">OOP</span>
+          <span class="skill-tag">Data Structures</span>
+          <span class="skill-tag">Artificial Intelligence</span>
+          <span class="skill-tag">Information Security</span>
+          <span class="skill-tag">CompTIA Sec+ Fundamentals</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// 03. projects</div>
+  <h2 class="section-title">Featured <span>Projects</span></h2>
+  <div class="divider"></div>
+  <div class="projects-grid">
+
+    <!-- Project 1 -->
+    <div class="project-card">
+      <div class="project-icon">🌐</div>
+      <div>
+        <div class="project-name">Multi-VLAN Enterprise Network Design</div>
+        <div class="project-sub">Cisco Packet Tracer · 2026</div>
+      </div>
+      <p class="project-desc">
+        Designed and implemented a full enterprise network for a 100×50m office building serving 200+ 
+        devices across 8 segmented VLANs. Includes inter-VLAN routing, NAT, centralised DHCP/DNS, 
+        WPA2 wireless, ACL-based security, STP redundancy with live failover testing, and simulated 
+        remote work connectivity.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">Cisco IOS</span>
+        <span class="project-tag">VLANs</span>
+        <span class="project-tag">NAT</span>
+        <span class="project-tag">ACLs</span>
+        <span class="project-tag">STP</span>
+        <span class="project-tag">DHCP</span>
+        <span class="project-tag">WPA2</span>
+      </div>
+      <a href="https://github.com/amogelangsherende" class="project-link" target="_blank">
+        View on GitHub →
+      </a>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <div class="project-icon">📱</div>
+      <div>
+        <div class="project-name">Cross-Platform Mobile Advertisement App</div>
+        <div class="project-sub">C# · .NET MAUI · 2025</div>
+      </div>
+      <p class="project-desc">
+        Developed a cross-platform mobile application using .NET MAUI targeting both Android and iOS 
+        from a single shared C# codebase. Built responsive UI components with dynamic advertisement 
+        display, following MVVM architecture for clean separation of concerns.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">C#</span>
+        <span class="project-tag">.NET MAUI</span>
+        <span class="project-tag">MVVM</span>
+        <span class="project-tag">Android</span>
+        <span class="project-tag">iOS</span>
+        <span class="project-tag">Visual Studio</span>
+      </div>
+      <a href="https://github.com/amogelangsherende" class="project-link" target="_blank">
+        View on GitHub →
+      </a>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <div class="project-icon">🗂️</div>
+      <div>
+        <div class="project-name">Funeral Services Management System</div>
+        <div class="project-sub">C# · Systems Analysis · 2025</div>
+      </div>
+      <p class="project-desc">
+        Conducted full systems analysis and designed a desktop management application for a funeral 
+        parlour. Implemented complete CRUD operations for booking management, client records, service 
+        scheduling and invoicing — built in C# with Visual Studio and a relational database backend.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">C#</span>
+        <span class="project-tag">CRUD</span>
+        <span class="project-tag">Systems Analysis</span>
+        <span class="project-tag">Database Design</span>
+        <span class="project-tag">Visual Studio</span>
+      </div>
+      <a href="https://github.com/amogelangsherende" class="project-link" target="_blank">
+        View on GitHub →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">// 04. education</div>
+  <h2 class="section-title">My <span>Education</span></h2>
+  <div class="divider"></div>
+
+  <div class="edu-card">
+    <div class="edu-icon">🎓</div>
+    <div>
+      <div class="edu-degree">Bachelor of Science in Information Technology</div>
+      <div class="edu-institution">North-West University · Pretoria, Gauteng · Final Year</div>
+      <p style="font-size:14px; color:#94A3B8; line-height:1.7;">
+        A comprehensive IT degree covering software development, networking, database management, 
+        systems analysis and artificial intelligence. Maintained a strong academic record throughout 
+        the programme.
+      </p>
+      <div class="edu-modules">
+        <span class="edu-module">Object Oriented Programming</span>
+        <span class="edu-module">Data Structures &amp; Algorithms</span>
+        <span class="edu-module">Systems Analysis &amp; Design</span>
+        <span class="edu-module">Computer Networks</span>
+        <span class="edu-module">Artificial Intelligence</span>
+        <span class="edu-module">Information Security</span>
+        <span class="edu-module">CompTIA Security+ Fundamentals</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="inner">
+    <div class="section-label">// 05. contact</div>
+    <h2 class="section-title">Get In <span>Touch</span></h2>
+    <div class="divider"></div>
+    <div class="contact-grid">
+      <div class="contact-text">
+        <p>
+          I'm currently open to junior roles in network engineering, software development 
+          and IT infrastructure. If you have an opportunity, a project, or just want to 
+          connect — send me a message.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:Amogelangsherende@gmail.com" class="contact-link">
+            <div class="contact-icon">✉️</div>
+            Amogelangsherende@gmail.com
+          </a>
+          <a href="https://github.com/amogelangsherende" class="contact-link" target="_blank">
+            <div class="contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#4F8EF7">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </div>
+            github.com/amogelangsherende
+          </a>
+          <a href="#" class="contact-link">
+            <div class="contact-icon">📍</div>
+            Pretoria, Gauteng, South Africa
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="John Smith">
+        </div>
+        <div class="form-group">
+          <label>Your Email</label>
+          <input type="email" placeholder="john@company.com">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell me about the opportunity..."></textarea>
+        </div>
+        <a href="mailto:Amogelangsherende@gmail.com" class="btn-primary" style="width:100%; text-align:center; display:block;">
+          Send Message
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed &amp; built by <span>Sherende Amogelang</span> · 2026</p>
+  <p style="margin-top:8px; font-size:11px;">BSc Information Technology · North-West University</p>
+</footer>
+
+<script>
+  // Generate floating background dots
+  const bg = document.getElementById('bgDots');
+  const colors = ['#4F8EF7', '#7B5CF0', '#34D399'];
+  for (let i = 0; i < 18; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    const size = Math.random() * 80 + 20;
+    dot.style.cssText = `
+      width: ${size}px;
+      height: ${size}px;
+      left: ${Math.random() * 100}%;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      animation-duration: ${Math.random() * 20 + 15}s;
+      animation-delay: ${Math.random() * 15}s;
+    `;
+    bg.appendChild(dot);
+  }
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? '#4F8EF7' : '';
+    });
+  });
+
+  // Smooth scroll for nav links
+  navLinks.forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Scroll reveal animation
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.project-card, .skill-cat, .stat-card, .edu-card, .contact-link').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.2s, box-shadow 0.2s';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
